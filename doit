@@ -1,0 +1,1 @@
+while true; do ./daily.sh ; sleep 120; done
