@@ -1,6 +1,5 @@
 var Twit = require('twit');
 var config = require('./config');
-console.log(config);
 
 var T = new Twit(config);
 var params = {
@@ -10,7 +9,7 @@ var params = {
 
 
 T.get('search/tweets', { q: 'banana since:2011-07-11', count: 100 }, function(err, data, response) {
-				  console.log(data)
+				  console.log(JSON.stringify(data));
 });
 
 
