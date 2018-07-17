@@ -7,7 +7,7 @@ var fs = require('fs');
 var readline = require('readline');
 var stream = require('stream');
 
-var instream = fs.createReadStream('../tweet.data');
+var instream = fs.createReadStream('splitdata.data');
 var outstream = new stream;
 var rl = readline.createInterface(instream, outstream);
 let n = 1;
@@ -18,15 +18,16 @@ let saveTweets = function(idList) {
   client.get('statuses/lookup.json', {id: idList.join(",")}, function(error, tweets, response) {
       if (error) {
           console.log("Call to twitter failed!! error="+error);
+					console.log(JSON.stringify(error));
       } else {
         //console.log(tweets);
-        let fileName = "data/data."+fileNumber+".json";
+        let fileName = "splitdata/splitdata."+fileNumber+".json";
         fs.writeFile(fileName,JSON.stringify(tweets),function(err) { if (err) console.log(err); });
         fileNumber = fileNumber + 1;
       }
   });
   setTimeout(function() {
-    console.log('Paused for one second.');
+    // console.log('Paused for one second.');
   }, 1000);
 };
 
